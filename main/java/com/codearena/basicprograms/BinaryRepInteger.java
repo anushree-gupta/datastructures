@@ -26,7 +26,6 @@ public class BinaryRepInteger {
     public static  String binaryOfPosInt(int i){
         
          /*
-        
         1. Initialize a String.
         2. Run a for loop with a logic of finding a decimal value of an integer
         3. Append it to the String and return its value.
