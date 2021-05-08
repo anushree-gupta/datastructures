@@ -1,0 +1,69 @@
+class Solution {
+    public double findMedianSortedArrays(int[] nums1, int[] nums2) {
+        
+        int n =nums1.length;
+        System.out.println("Length of first array: "+n);
+        int m = nums2.length;
+        System.out.println("Length of second array: "+m);
+        int arrLength= n+m;
+         System.out.println("Length of final array: "+ (n+m));
+        
+        int array1[] = new int[arrLength];
+        int i=0; int j =0; int k=0;
+        
+        if(n==0 & m==0){
+            
+            return 0.0;
+            
+        }else if( n==0 & m!=0){
+            return median(nums2, m);
+            
+        }else if(m==0 & n!=0){
+              return median(nums1, n);
+        }
+        else{
+               
+      
+             while(i< n && j<m)  { 
+                System.out.println("Value of n, i: "+ n +" "+i);
+                System.out.println("alue of m: "+ m+" "+j);
+                System.out.println("Values in an array: "+ nums1[i] +" "+nums2[j]);
+            if(nums1[i]> nums2[j]){
+                array1[k]=nums2[j];
+                System.out.println("Value Stored in resultant array: "+ array1[k]);
+                j++;
+            }else if(nums1[i]< nums2[j]){
+                array1[k]=nums1[i];
+                System.out.println("Value Stored in resultant array: "+ array1[k]);
+                i++;
+            }else{
+                array1[k]= nums1[i];
+                array1[k+1]=nums2[j];
+                i++; j++;
+            }
+            k++;
+        
+      if(i==n){
+            System.out.println("Value of K and J "+ k + j);
+            System.arraycopy(nums2, j, array1, k, m-j);}
+      if(j==m){
+            System.out.println("Value of K and I "+ k + i);
+            System.arraycopy(nums1, i, array1, k, n-i);  
+      }     
+    }
+        System.out.println(Arrays.toString(array1));
+       
+        
+    
+    }
+    return median(array1, m+n);
+    }
+    
+    private double median(int array[], int arrLength){
+        if (arrLength %2 == 0) {
+           return  (array[arrLength/2] + array[(arrLength/2)-1])/2;
+       }else{
+           return array[arrLength/2];
+       }
+    }
+}
